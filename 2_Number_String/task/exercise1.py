@@ -54,7 +54,7 @@ print("d: %s" %d1)
 # e
 import math
 squareRoot = math.sqrt( math.sqrt(n) )
-print("e %s"%squareRoot)
+print("e: %s"%squareRoot)
 
 """
     2
@@ -64,27 +64,27 @@ n2 = 17
 m2 = 18
 
 # a
-a2 = n // 10 + n % 10
+a2 = n2 // 10 + n2 % 10
 print("a2: %s" %a2)
 
 # b
-b2 = n %2 +m % 2
+b2 = n2 % 2 +m2 % 2
 print("b2: %s" %b2)
 
 # c
-c2 = (m + n) // 2
+c2 = (m2 + n2) // 2
 print("c2: %s" %c2)
 
 # d
-d2 = (m + n) / 2.0
+d2 = (m2 + n2) / 2.0
 print("d2: %s" %d2)
 
 # e
-e2 = int(0.5 * (m + n))
+e2 = int(0.5 * (m2 + n2))
 print("e2: %s" %e2)
 
 # f
-f2 = int( round(0.5 * (m + n)))
+f2 = int( round(0.5 * (m2 + n2)))
 print("f2: %s" %f2)
 
 
