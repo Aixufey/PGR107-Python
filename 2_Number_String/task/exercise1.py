@@ -11,6 +11,8 @@ Created on Fri Jan 20 13:35:49 2023
     %d - integer
     %f - float
 """
+
+
 quantity = 24
 total = 17.289
 # %10.2 means make 10 whitespace and justify right
@@ -29,6 +31,12 @@ n = 4
 
 # a
 a1 = x + n * y - (x + n) * y
+"""
+https://www.calculatorsoup.com/calculators/math/math-equation-solver.php
+https://www.mathsisfun.com/positive-negative-integers.html
+https://themathpage.com/Alg/parentheses.htm
+"""
+
 print("a: %s" %a1)
 
 # b
@@ -106,7 +114,7 @@ print(f3)
 
 
 """
-    4
+    4 / 5
 """
 
 # Program to prompt a user for two inputs
@@ -133,3 +141,46 @@ print("Maximum = %13d" %theMax)
 
 theMin = min(int(number1), int(number2))
 print("Minimum = %13d" %theMin)
+
+
+"""
+    6
+"""
+
+length = int(input("Enter the length: "))
+width = int(input("Enter the width: "))
+
+area = length * width
+perimeter = 2 * (length + width)
+print("Area = %16.2f" %area)
+print("Perimeter = %11.2f" %perimeter)
+
+
+"""
+    7
+"""
+userInput = input("Enter a word: ")
+userInputFormatted = userInput[0:2] + "..." + userInput[-2:] 
+print(userInputFormatted)
+
+"""
+    8
+"""
+def giveMeFive():
+    numbers = []
+    i = 1
+    while i < 6:
+        temp = int(input("Enter positive numbers: "))
+        assert temp >= 0, 'Only positive number'
+        numbers.append(temp) 
+        i += 1
+    print(*numbers, end=' ')
+    print("\n")
+    
+giveMeFive()
+
+def simpleFive(*args):
+    a,b,c,d,e = args
+    print(a,b,c,d,e, end=' ')
+    
+simpleFive(1,2,3,4,5)
