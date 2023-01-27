@@ -49,7 +49,7 @@ def markMyGradeEnhanced():
         print("Enter value between 0 and 100.")
     else:
         for grade in grades:
-            # is equivalent to grade[1] <= usrinput and usrinput <= grade[]
+            # is equivalent to grade[1] <= usrinput and usrinput <= grade[2]
             if grade[1] <= usrinput <= grade[2]:
                 
                 stop = timeit.default_timer()
