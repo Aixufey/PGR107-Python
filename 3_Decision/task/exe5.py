@@ -10,20 +10,19 @@ Created on Wed Jan 25 19:16:09 2023
     5
 """
 
-def weightConverter():
-    choice = int(input("Select 1 - metric: \nSelect 2 - imperial: \n"))
+
+def enhancedConverter():
+    choice = input("Select 1 - metric \nSelect 2 - imperial \n")
     
-    weight = 0
+    weight = float(input("Enter weight: "))
     
-    if choice == 1:
-        usrinput = int(input("Enter value: "))
-        assert usrinput >= 0 and usrinput <= 200
-        weight = usrinput * 2.2
-        print("Your weight in lb is %2.2flb" %float(weight))
+    if choice == "1":
+        assert weight > 0
+        result = weight * 2.2
+        print("Your weight in pounds is '%.2flbs' " % result)
     else:
-        usrinput = int(input("Enter value: "))
-        assert usrinput >= 0 and usrinput <= 200
-        weight = usrinput * 0.45
-        print("Your weight in kg is %dkg" %int(weight))
-    
-weightConverter()
+        result = weight * 0.45
+        assert weight > 0
+        print("Your weight in kg is '%dkg' " % result)
+        
+enhancedConverter()

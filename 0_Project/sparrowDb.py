@@ -25,36 +25,40 @@ class Connect:
         RETURN: Connection instance
         """
         conn = None
+        
         try:
             
-            if this.dbFile.endswith('.db'):
-                conn = sqlite3.connect(this.dbFile)
+            if this.dbFile in os.listdir(os.getcwd()):
+                
+                print("\n\n >>>> Connected '%s' <<<<\n\n" % this.dbFile)
+                
             else:
-                print("\n >>>> Not valid filename '%s' <<<<" % this.dbFile)
                 
-            if conn is not None:
+                if this.dbFile.endswith('.db'):
+                    
+                    conn = sqlite3.connect(this.dbFile)
+                    
+                    if conn is not None:
+                    
+                        sql = """ CREATE TABLE IF NOT EXISTS users (
+                            id INTEGER PRIMARY KEY, 
+                            name TEXT
+                            ); 
+                        """
+                        cursor = conn.cursor()
+                        cursor.execute(sql)
+                        conn.commit()
+                        conn.close()
+                        print("\n\n >>>> Created '%s' <<<<\n\n" % this.dbFile)
+                        
+                    return conn
                 
-                if this.dbFile in os.listdir(os.getcwd()):
-                    print("\n >>>> Connected '%s' <<<<" % this.dbFile)
                 else:
-                    print("\n >>>> Created '%s' <<<<" % this.dbFile)
-                # if os.listdir(os.getcwd())
-                #     print("\n >>>> Connected '%s' <<<<" % this.dbFile)
-                # else:
-                #     print("\n >>>> Created '%s' <<<<" % this.dbFile)
-                
-                sql = """ CREATE TABLE IF NOT EXISTS users (
-                    id INTEGER PRIMARY KEY, 
-                    name TEXT
-                    ); 
-                """
-                cursor = conn.cursor()
-                cursor.execute(sql)
-                conn.commit()
-                conn.close()
-            return conn
-        
+                    
+                    print("\n\n >>>> Not valid filename '%s' <<<<\n\n" % this.dbFile)
+                    
         except sqlite3.Error as e:
+            
             print(e)
     
         
