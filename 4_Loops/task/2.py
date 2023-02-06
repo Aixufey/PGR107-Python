@@ -16,7 +16,6 @@ while (i * i) < n:
    # print comes before i increment with 1 to get the 0
    print('i: {:>2}  <  n: {:>2}'.format(i*i,n))
    i = i + 1
- 
 
 """
     loop logic runs at least 1 time, or run n times so long as n is < i
@@ -32,3 +31,4 @@ while (i * i) < n:
         i = 8 + 1  9^2 = 81
         i = 9 + 1  10^2 = 100
 """
+

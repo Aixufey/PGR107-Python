@@ -14,15 +14,9 @@ while userinput != "":
     for i in "aeiouAEIOU":
         c = c.replace(i, "_")
     d = 0
-    isNumber = 0
     for i in userinput:
         if i.isnumeric():
             d += 1
-            
-    # e = userinput
-    # for i, val in enumerate(e):
-    #    if val in 'aeiouAEIOU':
-    #        print(f"Vowel: {val} => {i}")
     e = c
     for i,vowel in enumerate(userinput):
         if vowel in 'aeiouAEIOU':

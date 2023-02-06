@@ -5,6 +5,7 @@ Created on Fri Feb  3 20:52:53 2023
 @author: sparrow
 """
 import numpy
+
 FNAME = input("Enter first name: ")
 LNAME = input("Enter last name: ")
 
