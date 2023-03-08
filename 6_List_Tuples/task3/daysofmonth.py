@@ -29,7 +29,7 @@ def handle_days(Y, M):
                 f"{M.capitalize()} in {Y} has {list(month.values())[0]} days, and is {'not ' if not leap_year else ''}a leap year.")
             break
     else:
-        print(f"'{M}' is not a valid month.")
+        print(f"'{M}' is not a valid month. Please enter e.g. 'january'.")
 
 
 def handle_input():
