@@ -1,6 +1,6 @@
 ```mermaid
 
-%%{init: {'theme': 'forest', 'themeVariables': { 'fontSize': '16px', 'lineWidth': '2px'}}}%%
+%%{init: {'theme': 'base', 'themeVariables': { 'fontSize': '16px', 'lineWidth': '2px'}}}%%
 graph LR
 A[ Login ] --> B{ User exists? }
 B -- Yes --> C[ Menu]
