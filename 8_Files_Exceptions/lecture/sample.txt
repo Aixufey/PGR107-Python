@@ -1,0 +1,4 @@
+This is a file containing some sentences.
+Welcome to PGR107"
+What is your name?
+This is end of the file.
