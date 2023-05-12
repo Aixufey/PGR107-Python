@@ -99,6 +99,107 @@ class AVL(object):
 
         return self.root
 
+    def delete(self, key):
+        deleted = self.remove(self.root, key)
+        # print(f"%s is deleted" % deleted.value)
+
+    def remove(self, current, key):
+        if not current:
+            return current
+
+        # Here we recursively go left or right depends on the Node value we compare.
+        if key < current.value:
+            current.left = self.remove(current.left, key)
+
+        elif key > current.value:
+            current.right = self.remove(current.right, key)
+
+        else:
+            """
+                - Eventually if deletion key is found we are here.
+                - 3 edge cases for deletion node.
+                - is a leaf node | has one child | has two children 
+            """
+            # Last node
+            if self.root.left is None and self.root.right is None:
+                temp = self.root
+                self.root = None
+                return temp
+
+            # If deletion node has one child
+            if current.left is None:
+                temp = current.right
+                current = None
+                return temp
+            elif current.right is None:
+                temp = current.left
+                current = None
+                return temp
+
+            successor = self.find_current_subTree_min(current.right)
+            current.value = successor.value
+            # recursive call for removing the duplicate after successor is found and in place.
+            current.right = self.remove(current.right, successor.value)
+
+            if current is None:
+                return current
+            """
+                If deletion node has two children
+                
+                         X
+                        /  
+                       Xl  <-- Current has two children, find it's successor.
+                      / \      It will always on right subtree(Z)'s left(Zl).
+                     Y   Z     However, if Zl is None, Z will be successor.
+                        / \
+                       Zl  Zr
+                       
+                         X
+                        /  
+                       Zl  <-- Zl is successor
+                      / \
+                     Y   Z
+                          \
+                           Zr
+                           
+                         X
+                        /  
+                       Z   <-- If Zl is None, Z is successor
+                      / \
+                     Y   Zr
+            """
+
+            # After deletion - Check height and re-balance if necessary
+            current.height = 1 + max(self.get_height(current.left), self.get_height(current.right))
+            # Check BF
+            balance = self.get_balance(current)
+
+            # Case 1 - Left Left
+            if balance > 1 and self.get_balance(current.left) >= 0:
+                return self.right_rotate(current)
+
+            # Case 2 - Right Right
+            if balance < -1 and self.get_balance(current.right) <= 0:
+                return self.left_rotate(current)
+
+            # Case 3 - Left Right
+            if balance > 1 and self.get_balance(current.left) < 0:
+                current.left = self.left_rotate(current.left)
+                return self.right_rotate(current)
+
+            # Case 4 - Right Left
+            if balance < -1 and self.get_balance(current.right) > 0:
+                current.right = self.right_rotate(current.right)
+                return self.left_rotate(current)
+
+        return current
+
+    def find_current_subTree_min(self, node):
+        if node is None or node.left is None:
+            return node
+
+        return self.find_current_subTree_min(node.left)
+
     def get_height(self, node):
         if not node:
             return 0
@@ -189,5 +290,34 @@ avl.insert(2)
 avl.insert(3)
 avl.insert(8)
 avl.insert(9)
+avl.insert(0)
+avl.insert(1)
+avl.insert(50)
+avl.insert(15)
+avl.insert(22)
 
 avl.pre_order(avl.root)
+
+print()
+avl.delete(15)
+
+avl.pre_order(avl.root)
+
+"""
+             3     Pre order: 3, 1, 0, 2, 22, 8, 5, 9, 50 before deletion
+           /   \
+          1     15
+         / \    / \
+        0   2  8   50
+              / \   \
+             5   9   22
+
+
+             3     Pre order: 3, 1, 0, 2, 22, 8, 5, 9, 50 after deletion
+           /   \
+          1     22
+         / \    / \
+        0   2  8   50
+              / \
+             5   9
+"""
