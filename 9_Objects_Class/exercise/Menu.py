@@ -8,7 +8,7 @@
     3. Exit
 """
 
-class Menu
+class Menu:
     def __init__(self):
         pass
 
